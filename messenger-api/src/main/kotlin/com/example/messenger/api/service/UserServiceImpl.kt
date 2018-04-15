@@ -13,7 +13,7 @@ class UserServiceImpl(val repository: UserRepository): UserService {
 
     @Throws(UsernameUnavailableException::class)
     override fun attemptRegistration(userDetail: User): User? {
-        if(!usernameExists(userDetail.username)){
+       if(!usernameExists(userDetail.username)){
             val user = User()
             user.username = userDetail.username
             user.password = userDetail.password
@@ -21,8 +21,8 @@ class UserServiceImpl(val repository: UserRepository): UserService {
             repository.save(user);
             obscurePassword(user)
             return user
-        }
-        throw UsernameUnavailableException("The Username ${userDetail.username} is unavailable.")
+       }
+       throw UsernameUnavailableException("The Username ${userDetail.username} is unavailable.")
     }
 
     override fun listUser(currentUser: User): List<User> {
@@ -32,7 +32,7 @@ class UserServiceImpl(val repository: UserRepository): UserService {
 
     override fun retriveUserData(username: String): User? {
         var user = repository.findByUsername(username)
-        obscurePassword(user)
+        obscurePassword(user!!)
         return user
     }
     @Throws(InvalidUserIdException::class)

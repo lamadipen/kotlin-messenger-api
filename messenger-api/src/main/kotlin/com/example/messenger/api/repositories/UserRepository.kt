@@ -7,7 +7,7 @@ import java.util.*
 
 @Repository
 interface UserRepository: CrudRepository<User, Long> {
-    fun findByUsername(username: String): User
+    fun findByUsername(username: String): User?
     fun findByPhoneNumber(phoneNumber: String): User?
 
 }

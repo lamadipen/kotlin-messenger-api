@@ -1,4 +1,9 @@
 spring:
+  profiles:
+    active: aws
+---
+spring:
+  profiles: local
   jpa:
     properties:
       hibernate:
@@ -13,6 +18,23 @@ spring:
     username: postgres
     password: helloworld
 
+---
+
+spring:
+  profiles: aws
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    #database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    url: jdbc:postgresql://messengerdb.crwoazqjmqk6.us-east-2.rds.amazonaws.com:5432/messengerdb
+    username: postgres
+    password: helloworld
 
 
 #spring.jpa.properties.hibernate.temp.use_jdbc_metadata_defaults = false
